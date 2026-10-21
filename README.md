@@ -1,375 +1,135 @@
-# KitEngine — Accounts, Cloud Projects & Web Dashboard
+# KitEngine 🦊
 
-**Status:** Planned  
-**Core philosophy:** LOCAL-FIRST. ACCOUNT-BASED CLOUD ACCESS.
+### Make games. Not excuses.
 
-## 1. The main idea
+**A modular, open-source game engine built for developers who want useful tools, control over their projects, and room to create.**
 
-KitEngine should offer an integrated account and cloud project system accessible through:
+Welcome to **KitEngine** — an ambitious game engine project with a simple idea:
 
-- KitDen
-- KitEngine Editor
-- KitEngine Cloud Web Dashboard
+**Give developers a lot of good stuff. Don't force all of it into their games.**
 
-All three should use the same account identity.
+We're calling that **GOOD BLOAT**.
 
-An account is required to access private KitEngine Cloud projects and the authenticated web dashboard.
+Yes, seriously.
 
-An account is **NOT** required to use the local engine.
+> [!IMPORTANT]
+> **Status: PLANNED / PRE-ALPHA.** KitEngine is not a usable game engine yet. This repository currently documents what we're building, not features that already exist. No editor to download. No renderer to benchmark. **Zero triangles rendered.** We're working on that last part first.
 
-Users must be able to work on local projects entirely offline.
+---
 
-Cloud functionality adds synchronization, backup, remote project management, and account-based access.
+## GOOD BLOAT™ — Wait. Isn't bloat bad?
 
-## 2. Account requirements
+Usually? **YES.**
 
-A KitEngine account should eventually support:
+But KitEngine's philosophy is a little different:
 
-- Registration and secure login
-- Account profile
-- Optional passkey or third-party sign-in
-- Secure sessions
-- Multiple authorized devices
-- Cloud project ownership
-- Cloud storage usage
-- Project backup history
-- Web dashboard access
-- Account recovery
-- Account deletion and data export
+- **The engine can be feature-rich.** Rendering, scripting, visual tools, assets, and more should be available as the project grows.
+- **Your project gets to choose.** Use the modules you need; ignore the ones you don't.
+- **Exports should stay lean.** The long-term goal is to avoid bundling unused engine modules into finished games where technically practical.
+- **Performance matters.** Features are welcome. Unnecessary overhead isn't.
 
-The same identity must be recognized by desktop and web applications.
+**GOOD BLOAT = lots of useful possibilities, not lots of unnecessary baggage.**
 
-Users should not need separate accounts for KitDen and the web dashboard.
+We want a toolbox, not a backpack full of bricks.
 
-## 3. KitDen integration
+---
 
-KitDen should provide:
+## What are we actually building?
 
-- **Continue Without Account**
+Here's the plan. These are **goals**, not a list of completed features.
 
-And:
+| Part | The idea |
+| --- | --- |
+| **KitEngine Core** | A Dart-based foundation for projects, scenes, runtime systems, and modules. |
+| **Renderer** | **OpenGL first**, with a design that can support other graphics backends later. |
+| **KitEngine Editor** | A Flutter/Dart desktop editor for building and managing games visually. |
+| **KitDen** | A Flutter/Dart launcher and project hub for local projects and installed engine versions. |
+| **KitScript (`.kitsc`)** | A custom scripting language designed for KitEngine. Start understandable; optimize when it makes sense. |
+| **KitTheme (`.kitth`)** | A visual, customizable theming system. Your editor should feel like *your* workspace. |
+| **Optional AI Helper** | Help with development, but only with explicit user control over what it can access or change. |
+| **KitEngine Cloud** | Optional, account-based backup and sync for people who *want* it. Not a requirement for local development. |
 
-- **Sign In to KitEngine Cloud**
+The architecture will evolve as real code, benchmarks, and user feedback teach us what actually works.
 
-After signing in, KitDen should display the user's available cloud projects.
+### And the platforms?
 
-A user should be able to:
+**Windows and Linux** are the initial targets. macOS support may be possible later if there is someone able to maintain and test it properly.
 
-1. Open KitDen.
-2. Sign in.
-3. Select Cloud Projects.
-4. View the projects associated with their account.
-5. Download or open a project in KitEngine.
-6. Continue working locally.
-7. Synchronize approved changes back to the cloud.
+No pretending every platform is supported before anyone has even opened a window.
 
-Cloud synchronization should be optional per project.
+---
 
-Local projects must not be uploaded automatically just because a user signs in.
+## Local-first. Always.
 
-KitDen should also manage sign-out and account-related settings.
+You should be able to launch KitEngine, create a project, make a game, and export it **without creating an account**.
 
-## 4. KitEngine Editor integration
+No login wall. No forced sync. No surprise uploads.
 
-The KitEngine Editor should be usable without an account.
+**Local work is the default. The cloud is an option.**
 
-When signed in, the editor may provide integrated cloud functions.
+| You want to... | Need an account? |
+| --- | --- |
+| Use KitEngine locally | **No** |
+| Write KitScript | **No** |
+| Create and keep KitTheme files private | **No** |
+| Build and export a local game | **No** |
+| Back up projects to KitEngine Cloud | **Yes — opt-in** |
+| Access your private cloud projects in the web dashboard | **Yes** |
+| Share cloud projects with collaborators (future feature) | **Yes, with permissions** |
 
-**Potential controls:**
+### Cloud, but without the hostage situation
 
-- Open Cloud Project
-- Back Up to Cloud
-- Sync Project
-- View Backup History
-- Restore Previous Version
-- Resolve Sync Conflict
-- Open in Web Dashboard
+The long-term cloud plan is one account shared across **KitDen**, the **KitEngine Editor**, and a separate **web dashboard**.
 
-The editor should clearly distinguish:
+Cloud projects should have local working copies, versioned backups, and conflict handling. Losing your internet connection must not mean losing your ability to work.
 
-- **Local Project**
-- **Cloud-Synchronized Project**
+The web dashboard is for managing projects, backups, devices, and account settings — **not secretly a second game editor**.
 
-A cloud project should have a local working copy.
+And signing into the cloud must **not** silently grant the AI Helper access to your projects.
 
-Editing should continue when internet access is lost.
+**Your files. Your choice.**
 
-Changes can be synchronized after reconnecting.
+---
 
-Unresolved conflicts must not silently overwrite project files.
+## KitScript — because we want our own language
 
-## 5. KitEngine Cloud Web Dashboard
+**KitScript (`.kitsc`)** is the planned scripting language for KitEngine.
 
-KitEngine should have a separate browser-accessible dashboard.
+The goal is to make scripts approachable while leaving room for more powerful systems over time. The initial direction is a readable, interpreter-first implementation; more advanced execution approaches can come later if they are justified.
 
-The final website domain is not decided.
+No, there isn't a working KitScript runtime yet.
 
-The dashboard requires signing in to a KitEngine account to access private resources.
+**Yes, writing one is on the to-do list.**
 
-It should be usable without installing KitDen or the editor.
+---
 
-### Main dashboard
+## KitTheme — make the editor yours
 
-**Potential sections:**
+**KitTheme (`.kitth`)** is the planned theming format, paired with visual theme-editing tools.
 
-- Overview
-- My Cloud Projects
-- Project Backups
-- Storage Usage
-- Devices & Sessions
-- Account Settings
-- Security Settings
-- Future Team Projects
+Want a quiet, dark workspace? Great.
 
-The dashboard should provide a convenient way to manage cloud data from another computer or device.
+Want a theme that looks like a spaceship control panel? Also great.
 
-### Cloud project management
+Want to keep your theme private? **That's your call.**
 
-Users should eventually be able to:
+KitEngine shouldn't demand ownership of the original games, themes, or scripts you create with it. Third-party content may have its own license terms, so always check those separately.
 
-- See their cloud projects
-- View project names and engine versions
-- See the last synchronization date
-- View the latest backup status
-- Download a project backup
-- View available backup versions
-- Restore a previous version
-- Rename cloud project metadata
-- Remove cloud projects after confirmation
-- View and manage project access permissions when collaboration exists
+---
 
-The website should not require a complete browser-based game editor.
+## Meet Kuro 🦊
 
-**THE WEB DASHBOARD IS NOT AUTOMATICALLY A SECOND KITENGINE EDITOR.**
+Kuro is a **black fox**.
 
-Its primary purpose is project and account management.
+He's the mascot of KitEngine and the planned face of the optional AI Helper.
 
-A future browser editor can be considered separately if useful.
+He is **not** required to run the engine.
 
-### Browser access
+He does **not** approve your uploads.
 
-The dashboard should support modern desktop browsers.
+He does **not** delete your projects.
 
-Responsive access on mobile devices is desirable for account and project management.
-
-A phone should be able to display project information or storage usage without pretending to be a full desktop game-development workstation.
-
-## 6. Web dashboard technology
-
-The initial technology is not finalized.
-
-Flutter Web is a reasonable candidate, since KitEngine Editor and KitDen are already planned around Flutter and Dart.
-
-However, the web dashboard should use whichever supported web approach offers the best performance, accessibility, security, and maintenance experience.
-
-The dashboard should remain a separate web application.
-
-It should communicate with KitEngine Cloud through the same documented backend API used by KitDen and the editor.
-
-No direct browser access to privileged database credentials.
-
-## 7. Cloud database architecture
-
-KitEngine should separate three storage categories.
-
-### Local projects
-
-Ordinary project folders and files.
-
-**Examples:**
-
-- KitScript files
-- Scenes
-- Models
-- Textures
-- Audio
-- Shaders
-- Configuration
-
-These belong on the user's computer.
-
-### Local application database
-
-**Recommended:** SQLite
-
-Used where appropriate for:
-
-- Recent projects
-- Installed engine versions
-- Local metadata
-- Cached cloud project lists
-- Offline synchronization state
-- Download history
-
-This database belongs in the operating system's application-data directory.
-
-It is not the user's primary project file format.
-
-### Cloud relational database
-
-**Recommended:** PostgreSQL
-
-Stores structured online information such as:
-
-- Accounts and profile metadata
-- Project ownership
-- Project metadata
-- Cloud backup version records
-- Collaboration permissions
-- Device information
-- Storage references
-- Synchronization status
-
-Authentication secrets and sessions should be handled securely by the chosen authentication system.
-
-### Cloud object storage
-
-**Recommended:** Private S3-compatible object storage
-
-Stores:
-
-- Project archives
-- Backup snapshots
-- Uploaded binary assets
-- Versioned project files
-
-Large project files should not simply be placed inside PostgreSQL rows.
-
-The database records who owns each cloud object and where it is stored.
-
-## 8. Where the actual cloud database lives
-
-The production PostgreSQL database should be hosted on managed or otherwise properly secured server infrastructure.
-
-It should **NOT** live inside:
-
-- KitDen
-- The editor installation
-- An exported game
-- A public GitHub repository
-
-The application servers should communicate with the database using restricted credentials.
-
-The clients communicate with the cloud API.
-
-For an initial implementation, a managed PostgreSQL and object-storage platform is recommended.
-
-The exact hosting provider, infrastructure region, and domain remain undecided.
-
-## 9. Shared backend architecture
-
-Both desktop and web clients must use the same backend.
-
-**Conceptual structure:**
-
-```text
-KitDen Desktop ───────┐
-                      │
-KitEngine Editor ─────┼── HTTPS API
-                      │       │
-Cloud Web Dashboard ──┘       │
-                              ▼
-                      Authentication
-                      Authorization
-                              │
-                              ▼
-                      Cloud Application
-                              │
-                 ┌────────────┴────────────┐
-                 ▼                         ▼
-             PostgreSQL              Object Storage
-          Account metadata           Project files
-          Project ownership          Backup snapshots
-          Storage references         Uploaded assets
-          Permissions
-```
-
-The backend should enforce ownership and access rules.
-
-Users must not be able to view somebody else's private project merely by changing a project identifier in a URL.
-
-## 10. Cloud project identities
-
-Projects should have persistent identifiers independent of their visible names.
-
-For example, a user might rename a project without changing its cloud identity.
-
-A project's record may include:
-
-- Project ID
-- Owner account ID
-- Display name
-- KitEngine version
-- Creation timestamp
-- Last update timestamp
-- Last successful synchronization
-- Latest backup version
-- Cloud storage usage
-
-Cloud files should have separate identifiers and integrity checks.
-
-Renaming a project must not destroy its backup history.
-
-## 11. Backup and synchronization
-
-Cloud projects should have versioned backups.
-
-Users should be able to restore earlier versions.
-
-A reliable synchronization system must account for:
-
-- Offline edits
-- Interrupted uploads
-- Deleted files
-- Renamed files
-- Concurrent edits on multiple devices
-- Changed project formats
-- Engine version compatibility
-
-Conflicting changes must be detected.
-
-Where automatic merging is unsafe, users should be offered a choice.
-
-**NO SILENTLY REPLACING PLAYER.KITSC WITH AN OLDER VERSION FROM ANOTHER LAPTOP.**
-
-## 12. Security and privacy
-
-Cloud accounts require appropriate security protections.
-
-**Requirements include:**
-
-- HTTPS
-- Secure account authentication
-- Secure token or session storage
-- Authorization for every private resource
-- Rate limiting
-- Private object storage
-- Encrypted transport
-- Server-side access checks
-- Reliable database backups
-- Secret management
-- Account recovery
-- Session revocation
-- User-controlled project deletion
-- Clear data export and retention policies
-
-Signing into KitEngine Cloud must not automatically give the optional AI Helper access to cloud projects.
-
-Cloud project access and AI access are separate permission systems.
-
-## 13. Kuro and cloud accounts
-
-Kuro is the black fox mascot and the face of the optional AI Helper.
-
-Kuro does not need to become the entire account system.
-
-He may appear in relevant KitEngine branding, but authentication should remain a normal, predictable interface.
-
-Kuro does not approve uploads.
-
-Kuro does not authorize cloud deletion.
-
-Kuro does not secretly synchronize private projects.
+He does **not** secretly synchronize your private files.
 
 **HE IS NOT THE DATABASE ADMINISTRATOR.**
 
@@ -377,63 +137,89 @@ Kuro does not secretly synchronize private projects.
 
 **HE IS JUST THERE.**
 
-## 14. Development roadmap
+(And honestly? That's enough.)
 
-The cloud system should be implemented after the fundamental local engine architecture begins functioning.
+---
 
-**Recommended progression:**
+## What works right now?
 
-### Phase 0 — Local foundation
+**Not the engine. Yet.**
 
-Local projects, file management, project IDs, and SQLite where useful.
+This repository starts with planning and documentation. Let's not pretend a README is a rendering backend.
 
-### Phase 1 — Accounts and backend
+### The first actual mission
 
-Authentication, PostgreSQL, cloud API, and basic account profile.
+1. Open a desktop window.
+2. Create an OpenGL context.
+3. Clear the screen.
+4. **Render one triangle.**
+5. Handle basic input.
+6. Measure performance and make sure the foundation works on real hardware.
 
-### Phase 2 — Web dashboard
+Then we can work toward scenes, assets, scripting, the editor, and everything else.
 
-Login, project list, account controls, and basic storage information.
+**One triangle first. The universe later.**
 
-### Phase 3 — Cloud backup
+### A note on hardware
 
-Opt-in project uploads, private object storage, backup versions, download, and restore.
+Development includes testing on an older Linux laptop with an aging NVIDIA GPU. That's useful for catching performance and compatibility problems early — but it is **not** a replacement for testing on other hardware and operating systems.
 
-### Phase 4 — Desktop cloud integration
+If the ancient laptop complains, we listen. If a modern machine complains, we listen to that too.
 
-KitDen account login, cloud project browsing, editor integration, and synchronization.
+---
 
-### Phase 5 — Collaboration
+## Roadmap (the very honest edition)
 
-Team accounts, sharing permissions, and invited project members.
+These are **planned directions**, not promises of dates or completed milestones.
 
-### Phase 6 — Advanced services
+- [ ] **Foundation:** Window, graphics context, triangle, input, and basic diagnostics.
+- [ ] **Core systems:** Project loading, scenes, assets, and a modular runtime.
+- [ ] **Scripting:** First usable KitScript implementation.
+- [ ] **Editor:** A practical Flutter-based editing workflow.
+- [ ] **Customization:** KitTheme and visual theme tools.
+- [ ] **Build pipeline:** Package projects while excluding unnecessary modules where practical.
+- [ ] **KitDen:** Local project and engine-version management.
+- [ ] **Optional cloud:** Accounts, web dashboard, versioned backups, and safe synchronization.
+- [ ] **Maybe much later:** More rendering backends, collaboration, and other features justified by actual needs.
 
-Additional cloud tools based on actual demand and infrastructure costs.
+The roadmap will change. That's called development, not betrayal.
 
-These are planned milestones, not existing features.
+---
 
-## 15. Final rules
+## Want to help?
 
-| Feature / component | Requirement |
-| --- | --- |
-| Local KitEngine | No account required |
-| KitScript | No account required |
-| KitTheme | No account required |
-| Local builds and exports | No account required |
-| Cloud project access | Account required |
-| Authenticated web dashboard | Account required |
-| Cloud backups | Account required and opt-in |
-| Project sharing | Account and appropriate permissions required |
-| AI Helper | Optional and separate from cloud accounts |
-| Cloud database | PostgreSQL |
-| Cloud project files | Private object storage |
-| Local application database | SQLite where useful |
+**YES, PLEASE.**
 
-**One account. Multiple supported clients. One consistent cloud service.**
+You don't need to show up with a completed graphics engine in your pocket.
 
-**KITENGINE CLOUD — YOUR PROJECTS, AVAILABLE WHEN YOU SIGN IN.**
+Architecture discussions, bug reports once there's software to test, documentation suggestions, performance measurements, and thoughtful code contributions are all welcome as the project takes shape.
 
-And when you don't sign in?
+Read [`CONTRIBUTING.md`](CONTRIBUTING.md) for the contribution guidelines.
 
-**THE ENGINE STILL WORKS.**
+One request: **don't describe planned features as if they're already implemented.** We want enthusiasm *and* honesty.
+
+---
+
+## License and your creations
+
+**KitEngine is licensed under the MIT License.** See [`LICENSE`](LICENSE).
+
+The MIT License permits use, modification, and redistribution of the licensed engine code, including in commercial contexts, subject to its notice conditions.
+
+**Games, original scripts, and original themes you make are yours to license and share — or not share — as you choose.** Using an MIT-licensed engine doesn't by itself force you to open-source your own creations.
+
+Third-party assets, dependencies, and templates may have separate licenses.
+
+---
+
+## The short version
+
+**Open-source engine. Modular by design. Offline-first. Optional cloud. Custom scripting. Custom themes. A black fox.**
+
+We're not building this to impress investors with buzzwords.
+
+We're building it because **making games should be fun**, and building the tools to make them should be fun too.
+
+**KitEngine: GOOD BLOAT. BETTER GAMES.** 🦊
+
+*Current triangle count: 0. Subject to change.*
