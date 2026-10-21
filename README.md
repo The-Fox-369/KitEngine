@@ -221,5 +221,3 @@ We're not building this to impress investors with buzzwords.
 We're building it because **making games should be fun**, and building the tools to make them should be fun too.
 
 **KitEngine: GOOD BLOAT. BETTER GAMES.** 🦊
-
-*Current triangle count: 0. Subject to change.*
