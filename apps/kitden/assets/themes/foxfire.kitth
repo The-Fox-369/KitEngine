@@ -1,0 +1,21 @@
+{
+  "format": "kitth",
+  "formatVersion": 1,
+  "id": "foxfire",
+  "name": "Foxfire",
+  "author": "KitEngine",
+  "appearance": "dark",
+  "colors": {
+    "background": "#171116",
+    "sidebar": "#241A22",
+    "panel": "#2D2129",
+    "field": "#3A2B34",
+    "border": "#54404A",
+    "accent": "#FFB480",
+    "accentDim": "#493025",
+    "danger": "#FF788F",
+    "textPrimary": "#FFF3EA",
+    "textSecondary": "#D0B4BF",
+    "textMuted": "#997F8E"
+  }
+}

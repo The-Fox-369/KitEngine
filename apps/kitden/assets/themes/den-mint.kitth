@@ -1,0 +1,21 @@
+{
+  "format": "kitth",
+  "formatVersion": 1,
+  "id": "den-mint",
+  "name": "Den Mint",
+  "author": "KitEngine",
+  "appearance": "dark",
+  "colors": {
+    "background": "#101418",
+    "sidebar": "#171D23",
+    "panel": "#1C242B",
+    "field": "#252F37",
+    "border": "#35414A",
+    "accent": "#A5D6C5",
+    "accentDim": "#283E3B",
+    "danger": "#FF8088",
+    "textPrimary": "#F2F3F0",
+    "textSecondary": "#ABB7BC",
+    "textMuted": "#76858C"
+  }
+}
